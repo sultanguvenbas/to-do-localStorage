@@ -22,8 +22,6 @@ const addTodo = () => {
     done:false,
     createdAt: new Date().getTime()
   })
-
-
   input_content.value= ''
   input_category.value= null
 }
@@ -36,12 +34,12 @@ const removeTodo = todo =>  {
 watch(todos, (newVal) => {
   console.log(JSON.stringify(newVal))
   localStorage.setItem('todos',JSON.stringify(newVal))
-},{deep:true})
+},{deep:true}) //it will look through each individual array item element and then if anything changes deep will catch it and set the item
 
 //setting in local storage name
 watch(name, (newVal) => {
   localStorage.setItem('name', newVal)
-}, {deep:true})  //it will look through each individual array item element and then if anything changes deep will catch it and set the item
+})
 
 onMounted(()=> {
   name.value= localStorage.getItem('name') || ''
